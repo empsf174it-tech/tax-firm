@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Accounting | Corporate Tax &amp; Financial Advisory</title>
+  <meta name="description"
+    content="Apex Accounting provides premium tax, audit, and advisory services for businesses and individuals, with a live federal tax estimator and CPA-led planning.">
+  <meta name="theme-color" content="#0A1424">
+
+  <!-- Fonts: Playfair Display (display) + Inter (UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet">
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Set the theme before first paint so dark-mode users never see a light flash -->
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem('theme'); } catch (e) { }
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo-link">
+        <span class="logo-mark"><i class="ph-bold ph-triangle"></i></span>
+        <span>Apex</span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+        <button class="drawer-close" id="drawer-close" aria-label="Close menu"><i class="ph ph-x"></i></button>
+
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#estimator" class="nav-link">Estimator</a></li>
+          <li><a href="#resources" class="nav-link">Resources</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#trust" class="nav-link">Trust</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour theme">
+            <i class="ph ph-moon theme-icon-moon"></i>
+            <i class="ph ph-sun theme-icon-sun"></i>
+          </button>
+          <a href="#booking" class="btn btn-primary">Book a consultation</a>
+        </div>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="ph ph-list"></i></button>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section id="home" class="hero reveal">
+      <div class="hero-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <div class="container container-wide hero-content">
+        <div class="hero-text">
+          <div class="hero-badge reveal-item">
+            <b><i class="ph-fill ph-seal-check"></i> CPA-led</b>
+            <span>Filing season 2026 slots are open</span>
+          </div>
+
+          <h1 class="reveal-item" style="--d:60ms">
+            Clarity, compliance and <span class="serif-accent">confidence</span> in every number.
+          </h1>
+
+          <p class="lede reveal-item" style="--d:120ms">
+            Premium accounting and tax advisory for founders, firms and families. We absorb the
+            complexity of the tax code so you can spend your attention on growth.
+          </p>
+
+          <div class="hero-actions reveal-item" style="--d:180ms">
+            <a href="#booking" class="btn btn-primary btn-lg">Book a consultation <i class="ph ph-arrow-right"></i></a>
+            <a href="#estimator" class="btn btn-ghost btn-lg"><i class="ph ph-sliders-horizontal"></i> Try the tax
+              estimator</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal-item" style="--d:300ms">
+          <div class="hero-frame">
+            <img src="assets/images/hero-accountant.jpg" alt="An accountant reviewing tax documents at a desk"
+              loading="eager" width="900" height="760">
+          </div>
+
+          <div class="hero-chip chip-refund">
+            <i class="ph-fill ph-trend-up"></i>
+            <div>
+              <div class="chip-value num" data-count="4.2" data-prefix="$" data-suffix="M" data-decimals="1">$4.2M</div>
+              <div class="chip-label">Deductions found in 2025</div>
+            </div>
+          </div>
+
+          <div class="hero-chip chip-rating">
+            <i class="ph-fill ph-shield-check"></i>
+            <div>
+              <div class="chip-value">SOC 2 Type II</div>
+              <div class="chip-label">Independently audited</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credibility marquee -->
+      <div class="container container-wide">
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track" id="marquee-track">
+            <span class="marquee-item"><i class="ph ph-shield-check"></i> AES-256 encryption</span>
+            <span class="marquee-item"><i class="ph ph-certificate"></i> Licensed CPAs</span>
+            <span class="marquee-item"><i class="ph ph-bank"></i> IRS e-file authorised</span>
+            <span class="marquee-item"><i class="ph ph-lock-key"></i> GDPR &amp; CCPA aligned</span>
+            <span class="marquee-item"><i class="ph ph-scales"></i> Fiduciary standard</span>
+            <span class="marquee-item"><i class="ph ph-file-lock"></i> Encrypted client portal</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section id="services" class="services section bg-alt reveal">
+      <div class="container">
+        <div class="services-head">
+          <div class="section-header">
+            <div class="eyebrow reveal-item">What we do</div>
+            <h2 class="reveal-item" style="--d:60ms">Expertise that compounds.</h2>
+            <p class="reveal-item" style="--d:120ms">
+              Four core engagements, each run by a licensed CPA and backed by a documented review process.
+            </p>
+          </div>
+          <a href="#booking" class="btn btn-ghost reveal-item" style="--d:160ms">Compare engagements <i
+              class="ph ph-arrow-right"></i></a>
+        </div>
+
+        <div class="services-grid">
+          <article class="card service-card reveal-item" style="--d:0ms">
+            <div class="card-image"><img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=600"
+                alt="Bookkeeping" loading="lazy"></div>
+            <div class="card-icon"><i class="ph ph-calculator"></i></div>
+            <h3>Bookkeeping</h3>
+            <p>Reconciled ledgers, clean books and monthly reporting you can actually make decisions from.</p>
+            <div class="card-meta">
+              <div class="card-price">From <b>$450/mo</b></div>
+              <button class="btn-link open-modal" data-modal="modal-bookkeeping">Details <i
+                  class="ph ph-arrow-right"></i></button>
+            </div>
+          </article>
+
+          <article class="card service-card reveal-item" style="--d:80ms">
+            <div class="card-image"><img
+                src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=600"
+                alt="Tax Filing" loading="lazy"></div>
+            <div class="card-icon"><i class="ph ph-file-text"></i></div>
+            <h3>Tax Filing</h3>
+            <p>Proactive planning and precise filing across personal, corporate and partnership returns.</p>
+            <div class="card-meta">
+              <div class="card-price">From <b>$600/return</b></div>
+              <button class="btn-link open-modal" data-modal="modal-tax">Details <i
+                  class="ph ph-arrow-right"></i></button>
+            </div>
+          </article>
+
+          <article class="card service-card reveal-item" style="--d:160ms">
+            <div class="card-image"><img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600"
+                alt="Audit Support" loading="lazy"></div>
+            <div class="card-icon"><i class="ph ph-magnifying-glass"></i></div>
+            <h3>Audit Support</h3>
+            <p>Readiness assessments, statement audits and direct representation when the notice arrives.</p>
+            <div class="card-meta">
+              <div class="card-price">Scoped <b>Custom quote</b></div>
+              <button class="btn-link open-modal" data-modal="modal-audit">Details <i
+                  class="ph ph-arrow-right"></i></button>
+            </div>
+          </article>
+
+          <article class="card service-card reveal-item" style="--d:240ms">
+            <div class="card-image"><img
+                src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=600"
+                alt="Payroll" loading="lazy"></div>
+            <div class="card-icon"><i class="ph ph-users-three"></i></div>
+            <h3>Payroll</h3>
+            <p>Compliant, on-time payroll with filings, classifications and year-end forms handled end to end.</p>
+            <div class="card-meta">
+              <div class="card-price">From <b>$200/mo</b></div>
+              <button class="btn-link open-modal" data-modal="modal-payroll">Details <i
+                  class="ph ph-arrow-right"></i></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INTERACTIVE ESTIMATOR ================= -->
+    <section id="estimator" class="estimator section reveal">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow reveal-item">Interactive</div>
+          <h2 class="reveal-item" style="--d:60ms">Model your 2025 federal tax, live.</h2>
+          <p class="reveal-item" style="--d:120ms">
+            Move the sliders and every figure below recalculates instantly &mdash; bracket by bracket,
+            using the published 2025 federal rates.
+          </p>
+        </div>
+
+        <div class="estimator-shell reveal-item" style="--d:180ms">
+          <!-- Controls -->
+          <div class="est-panel">
+            <div class="est-panel-title">
+              <h3>Your situation</h3>
+            </div>
+
+            <div class="est-field">
+              <div class="est-label"><span>Filing status</span></div>
+              <div class="segmented" id="seg-status" style="--seg-count:2">
+                <button type="button" data-value="single" aria-pressed="true">Single</button>
+                <button type="button" data-value="married" aria-pressed="false">Married, jointly</button>
+              </div>
+            </div>
+
+            <div class="est-field">
+              <div class="est-label">
+                <span>Gross annual income</span>
+                <small>Drag or type</small>
+              </div>
+              <div class="money-input">
+                <span>$</span>
+                <input type="text" id="est-income" value="120,000" inputmode="numeric" autocomplete="off"
+                  spellcheck="false" aria-label="Gross annual income in dollars">
+              </div>
+              <input type="range" class="slider" id="est-income-range" min="0" max="600000" step="1000" value="120000"
+                aria-label="Gross annual income slider">
+              <div class="slider-scale"><span>$0</span><span>$300k</span><span>$600k+</span></div>
+            </div>
+
+            <div class="est-field">
+              <div class="est-label">
+                <span>Pre-tax retirement contributions</span>
+                <small id="est-401k-out" class="num">$8,000</small>
+              </div>
+              <input type="range" class="slider" id="est-401k" min="0" max="23500" step="500" value="8000"
+                aria-label="Annual pre-tax retirement contributions">
+              <div class="slider-scale"><span>$0</span><span>2025 cap &middot; $23,500</span></div>
+            </div>
+
+            <div class="est-field">
+              <div class="est-label">
+                <span>Deduction method</span>
+              </div>
+              <div class="segmented" id="seg-deduction" style="--seg-count:2">
+                <button type="button" data-value="standard" aria-pressed="true">Standard</button>
+                <button type="button" data-value="itemized" aria-pressed="false">Itemised</button>
+              </div>
+              <div id="itemized-wrap" hidden style="margin-top:var(--sp-4)">
+                <div class="money-input">
+                  <span>$</span>
+                  <input type="number" id="est-itemized" value="22000" min="0" max="500000" step="500"
+                    inputmode="numeric" aria-label="Total itemised deductions">
+                </div>
+              </div>
+            </div>
+
+            <div class="est-field">
+              <div class="est-label"><span>Planning levers</span><small>Toggle to compare</small></div>
+              <div class="chip-row" id="est-levers">
+                <button type="button" class="chip" data-lever="hsa" data-amount="4300" aria-pressed="false">
+                  <i class="ph ph-first-aid-kit"></i> HSA &middot; $4,300
+                </button>
+                <button type="button" class="chip" data-lever="qbi" data-amount="0" aria-pressed="false">
+                  <i class="ph ph-briefcase"></i> QBI 20% deduction
+                </button>
+                <button type="button" class="chip" data-lever="charity" data-amount="5000" aria-pressed="false">
+                  <i class="ph ph-hand-heart"></i> Charitable &middot; $5,000
+                </button>
+              </div>
+              <p class="lever-hint" id="lever-hint" hidden></p>
+            </div>
+
+            <button type="button" class="est-reset" id="est-reset">
+              <i class="ph ph-arrow-counter-clockwise"></i> Reset to defaults
+            </button>
+          </div>
+
+          <!-- Results -->
+          <div class="est-panel est-panel--results">
+            <div class="est-panel-title">
+              <h3>Your estimate</h3>
+              <span class="est-live">Live</span>
+            </div>
+
+            <div class="est-headline">
+              <div class="donut">
+                <svg viewBox="0 0 120 120" role="img" aria-labelledby="donut-title">
+                  <title id="donut-title">Share of income kept versus paid in federal tax</title>
+                  <defs>
+                    <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#D7B87E" />
+                      <stop offset="100%" stop-color="#997134" />
+                    </linearGradient>
+                  </defs>
+                  <circle class="track" cx="60" cy="60" r="50" fill="none" stroke-width="12" />
+                  <circle class="arc-tax" id="donut-arc" cx="60" cy="60" r="50" fill="none" stroke-width="12"
+                    stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16" />
+                </svg>
+                <div class="donut-center">
+                  <div class="dc-value num" id="donut-keep">0%</div>
+                  <div class="dc-label">You keep</div>
+                </div>
+              </div>
+
+              <div class="est-headline-figures">
+                <div class="figure-label">Estimated federal tax</div>
+                <div class="figure-value num" id="fig-tax">$0</div>
+                <div class="figure-sub" id="fig-sub">&mdash;</div>
+              </div>
+            </div>
+
+            <dl class="est-stats">
+              <div class="est-stat">
+                <dt>Taxable income</dt>
+                <dd class="num" id="stat-taxable">$0</dd>
+              </div>
+              <div class="est-stat">
+                <dt>Effective rate</dt>
+                <dd class="num" id="stat-effective">0.0%</dd>
+              </div>
+              <div class="est-stat">
+                <dt>Marginal rate</dt>
+                <dd class="num" id="stat-marginal">0%</dd>
+              </div>
+            </dl>
+
+            <div class="bracket-head">
+              <h4>Bracket-by-bracket breakdown</h4>
+              <span id="bracket-note">2025 rates</span>
+            </div>
+            <div class="bracket-list" id="bracket-list"></div>
+
+            <div class="est-footnote">
+              <i class="ph-fill ph-info"></i>
+              <p>
+                Federal income tax only &mdash; state, local, payroll (FICA) and credits are excluded.
+                This is an illustration, not tax advice. Your CPA-reviewed number will differ.
+              </p>
+            </div>
+
+            <a href="#booking" class="btn btn-primary btn-full est-cta">
+              Review this with a CPA <i class="ph ph-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BOOKING ================= -->
+    <section id="booking" class="booking section bg-alt reveal">
+      <div class="container">
+        <div class="booking-wrapper">
+          <div class="booking-text">
+            <div class="eyebrow reveal-item">Get started</div>
+            <h2 class="reveal-item" style="--d:60ms">Schedule your consultation.</h2>
+            <p class="lede reveal-item" style="--d:120ms">
+              A 45-minute working session with a licensed CPA. No sales script &mdash; you leave with
+              a written summary of what we would do and what it costs.
+            </p>
+
+            <ul class="booking-list reveal-item" style="--d:180ms">
+              <li><i class="ph-fill ph-clock"></i>
+                <div><b>45 minutes, no charge</b>Held over video or at our Manhattan office.</div>
+              </li>
+              <li><i class="ph-fill ph-file-text"></i>
+                <div><b>Written follow-up</b>Scope, timeline and fixed pricing within 48 hours.</div>
+              </li>
+              <li><i class="ph-fill ph-lock-key"></i>
+                <div><b>Encrypted document exchange</b>Nothing sensitive ever travels by email.</div>
+              </li>
+            </ul>
+
+            <div class="secure-notice reveal-item" style="--d:240ms">
+              <i class="ph-fill ph-lock-key"></i> Secure connection &middot; data encrypted in transit
+            </div>
+          </div>
+
+          <form id="booking-form" class="form booking-form reveal-item" style="--d:200ms" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="book-name">Full name <span class="req">*</span></label>
+                <input type="text" id="book-name" required placeholder="Jordan Ellis" autocomplete="name">
+                <span class="error-msg">Please enter your name.</span>
+              </div>
+              <div class="form-group">
+                <label for="book-email">Email address <span class="req">*</span></label>
+                <input type="email" id="book-email" required placeholder="jordan@company.com" autocomplete="email">
+                <span class="error-msg">Please enter a valid email.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="book-service">Service needed <span class="req">*</span></label>
+              <div class="select-wrapper">
+                <select id="book-service" required>
+                  <option value="" disabled selected>Select a service&hellip;</option>
+                  <option value="bookkeeping">Bookkeeping</option>
+                  <option value="tax">Tax Filing</option>
+                  <option value="audit">Audit Support</option>
+                  <option value="payroll">Payroll Processing</option>
+                  <option value="other">Other enquiry</option>
+                </select>
+                <i class="ph ph-caret-down select-icon"></i>
+              </div>
+              <span class="error-msg">Please select a service.</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="book-date">Preferred date <span class="req">*</span></label>
+                <input type="date" id="book-date" required>
+                <span class="error-msg">Please select a date.</span>
+              </div>
+              <div class="form-group">
+                <label for="book-time">Preferred time <span class="req">*</span></label>
+                <input type="time" id="book-time" required>
+                <span class="error-msg">Please select a time.</span>
+              </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <input type="checkbox" id="book-consent" required>
+              <label for="book-consent">I consent to being contacted about this enquiry. <span
+                  class="req">*</span></label>
+              <span class="error-msg">You must consent to continue.</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full btn-lg">Request appointment</button>
+            <div class="form-success-msg">
+              <i class="ph-fill ph-check-circle"></i>
+              <span>Request received. A CPA will confirm your slot within one business day.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESOURCES ================= -->
+    <section id="resources" class="resources section reveal">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow reveal-item">Library</div>
+          <h2 class="reveal-item" style="--d:60ms">Client resources.</h2>
+          <p class="reveal-item" style="--d:120ms">Plain-language guides written by the CPAs who file the returns.</p>
+        </div>
+
+        <div class="articles-grid">
+          <article class="article-card reveal-item">
+            <span class="article-tag">Planning</span>
+            <h4>Q3 tax planning guide</h4>
+            <p>Six moves that still change your position before the year closes &mdash; ranked by impact.</p>
+            <div class="article-meta"><span>8 min read</span><a href="#resources" class="read-more">Read <i
+                  class="ph ph-arrow-right"></i></a></div>
+          </article>
+
+          <article class="article-card reveal-item" style="--d:80ms">
+            <span class="article-tag">Deductions</span>
+            <h4>The deductions people miss</h4>
+            <p>A breakdown of the personal and business deductions most often left on the table.</p>
+            <div class="article-meta"><span>6 min read</span><a href="#resources" class="read-more">Read <i
+                  class="ph ph-arrow-right"></i></a></div>
+          </article>
+
+          <article class="article-card reveal-item" style="--d:160ms">
+            <span class="article-tag">Audit</span>
+            <h4>If the notice arrives</h4>
+            <p>What an audit actually involves, what to gather first, and what never to send.</p>
+            <div class="article-meta"><span>10 min read</span><a href="#resources" class="read-more">Read <i
+                  class="ph ph-arrow-right"></i></a></div>
+          </article>
+
+          <article class="article-card reveal-item" style="--d:240ms">
+            <span class="article-tag">Payroll</span>
+            <h4>Payroll compliance 101</h4>
+            <p>Worker classification, withholding and the filings that trigger the steepest penalties.</p>
+            <div class="article-meta"><span>7 min read</span><a href="#resources" class="read-more">Read <i
+                  class="ph ph-arrow-right"></i></a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="about section bg-alt reveal">
+      <div class="container about-container">
+        <div class="about-media reveal-item">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
+            alt="The Apex Accounting office interior" loading="lazy" width="800" height="880">
+          <blockquote class="about-quote">
+            &ldquo;We would rather explain the number than defend it.&rdquo;
+            <cite>Marcus Reid, Managing Partner</cite>
+          </blockquote>
+        </div>
+
+        <div class="about-content">
+          <div class="eyebrow reveal-item">Our practice</div>
+          <h2 class="reveal-item" style="--d:60ms">A legacy of precision.</h2>
+          <p class="reveal-item" style="--d:120ms">
+            Apex was founded on a simple conviction: financial advice is only worth having if you
+            understand it. Two decades on, we advise more than 500 corporations, partnerships and
+            individuals across fourteen states.
+          </p>
+          <p class="reveal-item" style="--d:160ms">
+            Every engagement is led by a licensed CPA and reviewed by a second partner before it
+            leaves the building. No offshore preparers, no black boxes, no surprises in April.
+          </p>
+
+          <div class="credibility-stats reveal-item" style="--d:220ms">
+            <div class="stat">
+              <span class="stat-num num" data-count="99" data-suffix="%">99%</span>
+              <span class="stat-label">Client retention</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num num" data-count="20" data-suffix="+">20+</span>
+              <span class="stat-label">Licensed CPAs</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num num" data-count="1.4" data-prefix="$" data-suffix="B" data-decimals="1">$1.4B</span>
+              <span class="stat-label">Assets advised</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRUST ================= -->
+    <section id="trust" class="trust section reveal">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow reveal-item">Standards</div>
+          <h2 class="reveal-item" style="--d:60ms">Uncompromising by default.</h2>
+          <p class="reveal-item" style="--d:120ms">
+            The controls behind the advice &mdash; documented, audited and available on request.
+          </p>
+        </div>
+
+        <div class="trust-grid">
+          <div class="feature-item reveal-item">
+            <div class="feature-icon"><i class="ph ph-shield-check"></i></div>
+            <h3>Bank-grade security</h3>
+            <p>AES-256 at rest, TLS 1.3 in transit, hardware-key enforced access for every staff account.</p>
+          </div>
+          <div class="feature-item reveal-item" style="--d:100ms">
+            <div class="feature-icon"><i class="ph ph-scales"></i></div>
+            <h3>Fiduciary duty</h3>
+            <p>We are legally and ethically bound to act in your financial interest, and we take no product commissions.
+            </p>
+          </div>
+          <div class="feature-item reveal-item" style="--d:200ms">
+            <div class="feature-icon"><i class="ph ph-seal-check"></i></div>
+            <h3>SOC 2 Type II</h3>
+            <p>Independently audited annually. Our latest report is available under NDA to any active client.</p>
+          </div>
+        </div>
+
+        <div class="testimonials reveal-item">
+          <div class="testimonial-viewport" id="testimonial-viewport">
+            <figure class="testimonial-card is-active">
+              <div class="stars" aria-label="Five out of five">
+                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                  class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+              </div>
+              <blockquote class="quote">&ldquo;Apex rebuilt our corporate tax strategy in a quarter. Thorough, fast, and
+                the first firm that explained the reasoning instead of just the invoice.&rdquo;</blockquote>
+              <figcaption class="author">
+                <img class="author-avatar"
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=3&q=80&w=160&h=160"
+                  alt="Sarah Jenkins" loading="lazy" width="64" height="64">
+                <strong>Sarah Jenkins</strong><span>CEO, TechFlow Inc.</span>
+              </figcaption>
+            </figure>
+
+            <figure class="testimonial-card">
+              <div class="stars" aria-label="Five out of five">
+                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                  class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+              </div>
+              <blockquote class="quote">&ldquo;We came in mid-audit and genuinely frightened. Their team took the
+                correspondence off our desk entirely and closed it with no adjustment.&rdquo;</blockquote>
+              <figcaption class="author">
+                <img class="author-avatar"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=facearea&facepad=3&q=80&w=160&h=160"
+                  alt="Daniel Okafor" loading="lazy" width="64" height="64">
+                <strong>Daniel Okafor</strong><span>CFO, Meridian Logistics</span>
+              </figcaption>
+            </figure>
+
+            <figure class="testimonial-card">
+              <div class="stars" aria-label="Five out of five">
+                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                  class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+              </div>
+              <blockquote class="quote">&ldquo;Six entities across four states, filed on time for three years running.
+                The monthly reporting alone changed how we run the business.&rdquo;</blockquote>
+              <figcaption class="author">
+                <img class="author-avatar"
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=facearea&facepad=3&q=80&w=160&h=160"
+                  alt="Priya Raman" loading="lazy" width="64" height="64">
+                <strong>Priya Raman</strong><span>Founder, Northline Studios</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="testimonial-nav">
+            <button class="t-arrow" id="t-prev" aria-label="Previous testimonial"><i
+                class="ph ph-arrow-left"></i></button>
+            <div class="t-dots" id="t-dots"></div>
+            <button class="t-arrow" id="t-next" aria-label="Next testimonial"><i class="ph ph-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="contact section bg-alt reveal">
+      <div class="container contact-container">
+        <div class="contact-info">
+          <div class="eyebrow reveal-item">Contact</div>
+          <h2 class="reveal-item" style="--d:60ms">Get in touch.</h2>
+          <p class="lede reveal-item" style="--d:120ms">
+            Questions, documents or a second opinion &mdash; reach the team directly.
+          </p>
+
+          <div class="contact-methods reveal-item" style="--d:180ms">
+            <div class="method">
+              <i class="ph ph-map-pin"></i>
+              <div>
+                <strong>Office</strong>
+                <p>1200 Financial District Ave, Suite 400<br>New York, NY 10005</p>
+              </div>
+            </div>
+            <div class="method">
+              <i class="ph ph-phone"></i>
+              <div><strong>Phone</strong>
+                <p>(555) 123-4567 &middot; Mon&ndash;Fri, 9am&ndash;6pm ET</p>
+              </div>
+            </div>
+            <div class="method">
+              <i class="ph ph-envelope-simple"></i>
+              <div><strong>Email</strong>
+                <p>contact@apexaccounting.demo</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-follow reveal-item" style="--d:240ms">
+            <span class="contact-follow-label">Follow us</span>
+            <div class="contact-social">
+              <a href="#" aria-label="Apex Accounting on LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+              <a href="#" aria-label="Apex Accounting on X"><i class="ph ph-x-logo"></i></a>
+              <a href="#" aria-label="Apex Accounting on Facebook"><i class="ph ph-facebook-logo"></i></a>
+              <a href="#" aria-label="Apex Accounting on Instagram"><i class="ph ph-instagram-logo"></i></a>
+              <a href="mailto:contact@apexaccounting.demo" aria-label="Email Apex Accounting"><i
+                  class="ph ph-envelope-simple"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper reveal-item" style="--d:160ms">
+          <form id="contact-form" class="form contact-form" action="https://formspree.io/f/placeholder" method="POST"
+            novalidate>
+            <div class="form-group">
+              <label for="contact-name">Name <span class="req">*</span></label>
+              <input type="text" id="contact-name" name="name" required placeholder="Your name" autocomplete="name">
+              <span class="error-msg">Please enter your name.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">Email <span class="req">*</span></label>
+              <input type="email" id="contact-email" name="_replyto" required placeholder="you@company.com"
+                autocomplete="email">
+              <span class="error-msg">Please enter a valid email.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-msg">Message <span class="req">*</span></label>
+              <textarea id="contact-msg" name="message" rows="5" required placeholder="How can we help?"></textarea>
+              <span class="error-msg">Please enter a message.</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full btn-lg">Send message</button>
+            <div class="form-success-msg">
+              <i class="ph-fill ph-check-circle"></i>
+              <span>Message sent. We typically reply within one business day.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="container contact-map-row reveal-item" style="--d:220ms">
+        <div class="contact-map-head">
+          <h3>Visit the office</h3>
+          <a class="map-link"
+            href="https://www.google.com/maps/search/?api=1&amp;query=1200+Financial+District+Ave+New+York+NY+10005"
+            target="_blank" rel="noopener">Open in Google Maps <i class="ph ph-arrow-up-right"></i></a>
+        </div>
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1684346765792!5m2!1sen!2sus"
+            width="100%" height="380" style="border:0" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Map to the Apex Accounting office"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="#home" class="logo-link">
+            <span class="logo-mark"><i class="ph-bold ph-triangle"></i></span>
+            <span>Apex</span>
+          </a>
+          <p>Premium accounting and tax advisory. CPA-led, fiduciary by policy, precise by habit.</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+            <a href="#" aria-label="X"><i class="ph ph-x-logo"></i></a>
+            <a href="#" aria-label="Email"><i class="ph ph-envelope-simple"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#estimator">Tax estimator</a></li>
+            <li><a href="#booking">Book a consultation</a></li>
+            <li><a href="#resources">Resources</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#trust">Trust &amp; security</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col newsletter-col">
+          <h4>Quarterly brief</h4>
+          <p>Tax-code changes that actually affect you, four times a year. No filler.</p>
+          <form class="newsletter" id="newsletter-form" novalidate>
+            <input type="email" placeholder="you@company.com" aria-label="Email address for the newsletter" required>
+            <button type="submit" aria-label="Subscribe"><i class="ph ph-paper-plane-tilt"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="disclosure">
+          Apex Accounting is a placeholder brand used for demonstration purposes only. Not a real
+          financial institution, and nothing here is tax, legal or investment advice.
+        </p>
+        <p class="copyright">&copy; <span id="year">2026</span> Apex Accounting</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" aria-label="Back to top"><i class="ph ph-arrow-up"></i></button>
+
+  <!-- ================= MODALS ================= -->
+  <div class="modal-overlay" id="modal-backdrop" aria-hidden="true">
+
+    <div class="modal" id="modal-bookkeeping" role="dialog" aria-modal="true" aria-labelledby="modal-book-title">
+      <button class="modal-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-icon"><i class="ph ph-calculator"></i></div>
+          <h3 id="modal-book-title">Bookkeeping</h3>
+        </div>
+        <div class="modal-body">
+          <p>Precise financial records maintained year-round, so tax season is a formality rather than an excavation.
+          </p>
+          <h4>What is included</h4>
+          <ul>
+            <li>Monthly bank and credit card reconciliation</li>
+            <li>Accounts payable and receivable management</li>
+            <li>Customised monthly management reporting</li>
+            <li>Integration with Xero, QuickBooks and NetSuite</li>
+          </ul>
+          <div class="pricing-tier"><span>Starting at</span><strong>$450 / month</strong></div>
+        </div>
+        <a href="#booking" class="btn btn-primary btn-full modal-cta">Book this service</a>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-tax" role="dialog" aria-modal="true" aria-labelledby="modal-tax-title">
+      <button class="modal-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-icon"><i class="ph ph-file-text"></i></div>
+          <h3 id="modal-tax-title">Tax filing &amp; strategy</h3>
+        </div>
+        <div class="modal-body">
+          <p>Minimise your liability and stay fully compliant with a tax code that changes every year.</p>
+          <h4>What is included</h4>
+          <ul>
+            <li>Strategic planning and quarterly projections</li>
+            <li>Preparation and e-filing of all returns</li>
+            <li>Multi-state and nexus compliance</li>
+            <li>IRS representation where required</li>
+          </ul>
+          <div class="pricing-tier"><span>Starting at</span><strong>$600 / return</strong></div>
+        </div>
+        <a href="#booking" class="btn btn-primary btn-full modal-cta">Book this service</a>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-audit" role="dialog" aria-modal="true" aria-labelledby="modal-audit-title">
+      <button class="modal-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-icon"><i class="ph ph-magnifying-glass"></i></div>
+          <h3 id="modal-audit-title">Audit support</h3>
+        </div>
+        <div class="modal-body">
+          <p>Face internal or external scrutiny with documentation that holds up and a partner who speaks for you.</p>
+          <h4>What is included</h4>
+          <ul>
+            <li>Pre-audit readiness assessment</li>
+            <li>Financial statement audits and reviews</li>
+            <li>Direct correspondence with examiners</li>
+            <li>Remediation and controls documentation</li>
+          </ul>
+          <div class="pricing-tier"><span>Scoped engagement</span><strong>Custom quote</strong></div>
+        </div>
+        <a href="#booking" class="btn btn-primary btn-full modal-cta">Book this service</a>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-payroll" role="dialog" aria-modal="true" aria-labelledby="modal-payroll-title">
+      <button class="modal-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-icon"><i class="ph ph-users-three"></i></div>
+          <h3 id="modal-payroll-title">Payroll processing</h3>
+        </div>
+        <div class="modal-body">
+          <p>Your team paid accurately and on time, with every federal and state obligation filed behind the scenes.</p>
+          <h4>What is included</h4>
+          <ul>
+            <li>Direct deposit setup and management</li>
+            <li>Payroll tax calculation and filing</li>
+            <li>W-2 and 1099 preparation</li>
+            <li>Classification and onboarding compliance</li>
+          </ul>
+          <div class="pricing-tier"><span>Starting at</span><strong>$200/mo + $10/employee</strong></div>
+        </div>
+        <a href="#booking" class="btn btn-primary btn-full modal-cta">Book this service</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

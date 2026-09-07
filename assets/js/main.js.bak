@@ -1,0 +1,287 @@
+document.addEventListener('DOMContentLoaded', () => {
+  /* ==========================================================================
+     THEME TOGGLE
+     ========================================================================== */
+  const htmlEl = document.documentElement;
+  const themeToggle = document.getElementById('theme-toggle');
+
+  // Check local storage or prefer color scheme
+  const storedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (storedTheme) {
+    htmlEl.setAttribute('data-theme', storedTheme);
+  } else if (prefersDark) {
+    htmlEl.setAttribute('data-theme', 'dark');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = htmlEl.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+
+  /* ==========================================================================
+     MOBILE NAVIGATION (HAMBURGER & DRAWER)
+     ========================================================================== */
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  const drawerClose = document.getElementById('drawer-close');
+  const navOverlay = document.getElementById('nav-overlay');
+  const navLinks = document.querySelectorAll('.nav-link, .nav-actions .btn');
+
+  function openMenu() {
+    navMenu.classList.add('active');
+    navOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  }
+
+  function closeMenu() {
+    navMenu.classList.remove('active');
+    navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openMenu);
+  drawerClose.addEventListener('click', closeMenu);
+  navOverlay.addEventListener('click', closeMenu);
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+  });
+
+  /* ==========================================================================
+     SCROLL SPY & SMOOTH SCROLL
+     ========================================================================== */
+  const sections = document.querySelectorAll('section[id]');
+  const scrollNavLinks = document.querySelectorAll('.nav-links .nav-link');
+
+  function scrollSpy() {
+    const scrollY = window.pageYOffset;
+    
+    sections.forEach(current => {
+      const sectionHeight = current.offsetHeight;
+      const sectionTop = current.offsetTop - 150; // offset for navbar
+      const sectionId = current.getAttribute('id');
+      
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        scrollNavLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + sectionId) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', scrollSpy);
+
+  /* ==========================================================================
+     SCROLL REVEAL ANIMATIONS
+     ========================================================================== */
+  const revealElements = document.querySelectorAll('.reveal');
+  
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  revealElements.forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  /* ==========================================================================
+     MODALS
+     ========================================================================== */
+  const modalOpenBtns = document.querySelectorAll('.open-modal');
+  const modalCloseBtns = document.querySelectorAll('.modal-close');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modals = document.querySelectorAll('.modal');
+  const modalCtas = document.querySelectorAll('.modal-cta');
+
+  function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    
+    modalBackdrop.classList.add('active');
+    modalBackdrop.setAttribute('aria-hidden', 'false');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus management - focus close btn
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeAllModals() {
+    modalBackdrop.classList.remove('active');
+    modalBackdrop.setAttribute('aria-hidden', 'true');
+    modals.forEach(m => m.classList.remove('active'));
+    document.body.style.overflow = '';
+  }
+
+  modalOpenBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modalId = btn.getAttribute('data-modal');
+      openModal(modalId);
+    });
+  });
+
+  modalCloseBtns.forEach(btn => {
+    btn.addEventListener('click', closeAllModals);
+  });
+
+  modalBackdrop.addEventListener('click', (e) => {
+    if (e.target === modalBackdrop) {
+      closeAllModals();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalBackdrop.classList.contains('active')) {
+      closeAllModals();
+    }
+  });
+  
+  // When clicking CTA inside modal, close modal and scroll to #booking
+  modalCtas.forEach(cta => {
+    cta.addEventListener('click', () => {
+      closeAllModals();
+      // Service selection pre-fill based on modal could be added here
+    });
+  });
+
+  /* ==========================================================================
+     FORM VALIDATION
+     ========================================================================== */
+  function validateForm(formId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+      
+      const requiredInputs = form.querySelectorAll('[required]');
+      
+      requiredInputs.forEach(input => {
+        const group = input.closest('.form-group');
+        let isInputValid = true;
+        
+        if (input.type === 'checkbox') {
+          isInputValid = input.checked;
+        } else if (input.type === 'email') {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          isInputValid = emailRegex.test(input.value.trim());
+        } else {
+          isInputValid = input.value.trim() !== '';
+        }
+        
+        if (!isInputValid) {
+          group.classList.add('error');
+          group.classList.remove('success');
+          isValid = false;
+        } else {
+          group.classList.remove('error');
+          group.classList.add('success');
+        }
+      });
+      
+      if (isValid) {
+        // Show success state
+        form.classList.add('submitted');
+        
+        // Remove error/success classes from groups
+        form.querySelectorAll('.form-group').forEach(g => {
+          g.classList.remove('error');
+          g.classList.remove('success');
+        });
+        
+        // In a real app, send data here
+        console.log(`Form ${formId} submitted successfully`);
+      }
+    });
+    
+    // Clear errors on input
+    const inputs = form.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+      input.addEventListener('input', () => {
+        const group = input.closest('.form-group');
+        group.classList.remove('error');
+      });
+    });
+  }
+
+  validateForm('booking-form');
+  validateForm('contact-form');
+
+  /* ==========================================================================
+     TAX ESTIMATE CALCULATOR
+     ========================================================================== */
+  const calcBtn = document.getElementById('calc-btn');
+  if (calcBtn) {
+    calcBtn.addEventListener('click', () => {
+      const incomeInput = document.getElementById('calc-income');
+      const statusInput = document.getElementById('calc-status');
+      const resultDiv = document.getElementById('calc-result');
+      const resultRate = document.getElementById('result-rate');
+      const resultOwed = document.getElementById('result-owed');
+      
+      const income = parseFloat(incomeInput.value);
+      const status = statusInput.value;
+      const group = incomeInput.closest('.form-group');
+      
+      if (isNaN(income) || income < 0) {
+        group.classList.add('error');
+        resultDiv.classList.add('hidden');
+        return;
+      }
+      
+      group.classList.remove('error');
+      
+      // Extremely simplified placeholder calculation logic
+      let rate = 0;
+      if (status === 'single') {
+        if (income <= 40000) rate = 0.12;
+        else if (income <= 85000) rate = 0.22;
+        else if (income <= 160000) rate = 0.24;
+        else rate = 0.32;
+      } else {
+        if (income <= 80000) rate = 0.12;
+        else if (income <= 170000) rate = 0.22;
+        else if (income <= 320000) rate = 0.24;
+        else rate = 0.32;
+      }
+      
+      const owed = income * rate;
+      
+      resultRate.textContent = (rate * 100).toFixed(1) + '%';
+      resultOwed.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(owed);
+      
+      resultDiv.classList.remove('hidden');
+    });
+  }
+
+  /* ==========================================================================
+     FOOTER YEAR
+     ========================================================================== */
+  const yearEl = document.getElementById('year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+});
