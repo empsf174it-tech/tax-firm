@@ -411,8 +411,9 @@ p:last-child { margin-bottom: 0; }
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: var(--text);
+  color: var(--brass-500);
 }
+[data-theme="dark"] .logo-link { color: var(--brass-300); }
 .logo-mark {
   display: grid;
   place-items: center;
@@ -1794,7 +1795,7 @@ select { appearance: none; padding-right: 2.5rem; cursor: pointer; }
   padding-bottom: var(--sp-8);
   border-bottom: 1px solid rgba(255,255,255,0.10);
 }
-.footer .logo-link { color: #fff; margin-bottom: var(--sp-4); }
+.footer .logo-link { color: var(--brass-300); margin-bottom: var(--sp-4); }
 .footer p { font-size: 0.875rem; }
 .footer h4 {
   color: #fff;
