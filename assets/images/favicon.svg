@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="128" fill="#0A1424"/>
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3E7CE"/>
+      <stop offset="50%" stop-color="#D7B87E"/>
+      <stop offset="100%" stop-color="#B68B45"/>
+    </linearGradient>
+  </defs>
+  <!-- Apex geometric triangle logo -->
+  <path d="M256 104 L420 392 L92 392 Z" fill="url(#goldGrad)"/>
+  <path d="M256 200 L348 356 L164 356 Z" fill="#0A1424"/>
+</svg>
