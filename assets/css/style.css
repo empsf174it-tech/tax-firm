@@ -547,6 +547,7 @@ p:last-child { margin-bottom: 0; }
   padding-top: calc(var(--nav-h) + var(--sp-10));
   padding-bottom: var(--sp-8);
   overflow: hidden;
+  scroll-margin-top: 0;
 }
 
 .hero-aurora {

@@ -50,6 +50,8 @@
     var close = document.getElementById('drawer-close');
     if (!menu) return;
 
+    function isOpen() { return menu.classList.contains('active'); }
+
     function open() {
       menu.classList.add('active');
       overlay.classList.add('active');
@@ -65,15 +67,48 @@
     if (close) close.addEventListener('click', shut);
     if (overlay) overlay.addEventListener('click', shut);
 
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (menu.classList.contains('active')) shut();
-      });
+    /* In-page links: the drawer is a fixed panel that locks body scrolling,
+       so the browser's own hash jump is unreliable while it closes. Drive the
+       scroll ourselves once the lock is released, offsetting for the fixed bar. */
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest ? e.target.closest('a[href]') : null;
+      if (!link) return;
+
+      var href = link.getAttribute('href');
+      if (!href || href.charAt(0) !== '#' || href === '#') return;
+
+      var target = document.getElementById(href.slice(1));
+      if (!target) return;
+
+      e.preventDefault();
+
+      var wasOpen = isOpen();
+      if (wasOpen) shut();
+
+      // Wait for the scroll lock to lift before measuring and scrolling.
+      var go = function () { scrollToTarget(target, href); };
+      if (wasOpen) {
+        window.requestAnimationFrame(function () { window.requestAnimationFrame(go); });
+      } else {
+        go();
+      }
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && menu.classList.contains('active')) shut();
+      if (e.key === 'Escape' && isOpen()) shut();
     });
+  }
+
+  /* Scrolls an in-page target below the fixed navbar and keeps the URL in sync. */
+  function scrollToTarget(target, hash) {
+    var navbar = document.getElementById('navbar');
+    var offset = navbar ? navbar.getBoundingClientRect().height + 8 : 0;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    window.scrollTo({ top: Math.max(top, 0), behavior: reduceMotion ? 'auto' : 'smooth' });
+
+    if (history.replaceState) history.replaceState(null, '', hash);
+    else window.location.hash = hash;
   }
 
   /* ==========================================================================
